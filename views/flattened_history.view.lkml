@@ -22,12 +22,18 @@ view: flattened_history {
       raw,
       time,
       date,
+      day_of_week,
       week,
       month,
       quarter,
       year
     ]
     sql: ${TABLE}.created_date ;;
+  }
+
+  dimension: string_date  {
+    type: string
+    sql:  substr((to_char(${TABLE}.created_date)),6,5);;
   }
 
   dimension: first_to_last_status {
@@ -79,6 +85,12 @@ view: flattened_history {
     ]
     sql: ${TABLE}.resolved_date ;;
   }
+
+  dimension: string_date2  {
+    type: string
+    sql:  substr((to_char(${TABLE}.resolved_date)),6,5);;
+  }
+
 
   dimension_group: status_date_last {
     type: time
@@ -146,6 +158,26 @@ view: flattened_history {
     type: count
   }
 
+  measure: average_month {
+    type: number
+    sql:  ${count}/${count_months} ;;
+  }
+
+  measure: average_days {
+    type: number
+    sql:  ${count}/${count_days} ;;
+  }
+
+  measure: average_month2 {
+    type: number
+    sql:  ${count}/${count_months2} ;;
+  }
+
+  measure: average_days2 {
+    type: number
+    sql:  ${count}/${count_days2} ;;
+  }
+
   measure: count_percent {
     type: percent_of_total
     sql: ${TABLE}.dummy ;;
@@ -159,6 +191,21 @@ view: flattened_history {
   measure: count_days {
     type: count_distinct
     sql: ${TABLE}.created_date ;;
+  }
+
+  measure: count_months {
+    type: count_distinct
+    sql: month(${TABLE}.created_date) ;;
+  }
+
+  measure: count_days2 {
+    type: count_distinct
+    sql: ${TABLE}.resolved_date ;;
+  }
+
+  measure: count_months2 {
+    type: count_distinct
+    sql: month(${TABLE}.resolved_date) ;;
   }
 
   measure: average_submissions {

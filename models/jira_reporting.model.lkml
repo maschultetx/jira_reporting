@@ -46,3 +46,12 @@ explore: project_totals_all {}
 explore: project_totals_open {}
 explore: status_totals_all {}
 explore: status_totals_open {}
+
+explore: component_totals_all_trends {}
+explore: component_totals_open_trends {}
+explore: project_totals_all_trends {}
+explore: project_totals_open_trends {}
+explore: status_totals_all_trends {}
+explore: status_totals_open_trends {}
+
+explore:  flattened_assignee_history{}

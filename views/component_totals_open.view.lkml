@@ -31,7 +31,7 @@ view: component_totals_open {
     sql: ${TABLE}.tot1 ;;
 
     html:
-      <b>{{ percent._rendered_value }} </b> <br>  <b> {{ tot1._rendered_value }}  </b> </div>
+      <br> <b>{{ percent._rendered_value }} </b> <br>  <b> {{ tot1._rendered_value }}  </b> </div>
       ;;
   }
 }
