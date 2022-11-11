@@ -55,3 +55,4 @@ explore: status_totals_all_trends {}
 explore: status_totals_open_trends {}
 
 explore:  flattened_assignee_history{}
+explore:  ot_flattened_history {}
