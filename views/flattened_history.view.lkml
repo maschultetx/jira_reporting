@@ -170,12 +170,12 @@ view: flattened_history {
 
   measure: average_month2 {
     type: number
-    sql:  if ${count_months2} = 0 then 0 else ${count}/${count_months2} endif ;;
+    sql:  ${count}/ NULLIF(${count_months2}) ;;
   }
 
   measure: average_days2 {
     type: number
-    sql:  if ${count_days2} = 0 then 0 else ${count}/${count_days2} endif ;;
+    sql:  ${count}/ NULLIF(${count_days2}) ;;
   }
 
   measure: count_percent {
