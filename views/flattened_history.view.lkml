@@ -31,6 +31,11 @@ view: flattened_history {
     sql: ${TABLE}.created_date ;;
   }
 
+  dimension: created_yr_mo {
+    type: string
+    sql: (TO_CHAR(DATE_TRUNC('month', ${TABLE}.created_date), 'YYYY-MM')) ;;
+  }
+
   dimension: string_date  {
     type: string
     sql:  substr((to_char(${TABLE}.created_date)),6,5);;
@@ -85,6 +90,12 @@ view: flattened_history {
     ]
     sql: ${TABLE}.resolved_date ;;
   }
+
+  dimension: resolved_yr_mo {
+    type: string
+    sql: (TO_CHAR(DATE_TRUNC('month', ${TABLE}.resolved_date), 'YYYY-MM')) ;;
+  }
+
 
   dimension: string_date2  {
     type: string
@@ -195,7 +206,7 @@ view: flattened_history {
 
   measure: count_months {
     type: count_distinct
-    sql: month(${TABLE}.created_date) ;;
+    sql: ${created_yr_mo} ;;
   }
 
   measure: count_days2 {
@@ -205,7 +216,7 @@ view: flattened_history {
 
   measure: count_months2 {
     type: count_distinct
-    sql: month(${TABLE}.resolved_date) ;;
+    sql: ${resolved_yr_mo} ;;
   }
 
   measure: average_submissions {
